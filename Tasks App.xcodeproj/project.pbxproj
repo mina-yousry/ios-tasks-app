@@ -10,6 +10,7 @@
 		84689D3220E55EA0007FA63C /* PersistenceUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3120E55EA0007FA63C /* PersistenceUtility.swift */; };
 		84689D3420E568D5007FA63C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3320E568D5007FA63C /* SettingsViewModel.swift */; };
 		84689D3620E56B21007FA63C /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3520E56B21007FA63C /* AddTaskViewController.swift */; };
+		84689D3820E56B9B007FA63C /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3720E56B9B007FA63C /* AddTaskViewModel.swift */; };
 		84FF7C9420E548EF00213CB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7C9320E548EF00213CB2 /* AppDelegate.swift */; };
 		84FF7C9920E548EF00213CB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84FF7C9720E548EF00213CB2 /* Main.storyboard */; };
 		84FF7C9C20E548EF00213CB2 /* Tasks_App.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84FF7C9A20E548EF00213CB2 /* Tasks_App.xcdatamodeld */; };
@@ -47,6 +48,7 @@
 		84689D3120E55EA0007FA63C /* PersistenceUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceUtility.swift; sourceTree = "<group>"; };
 		84689D3320E568D5007FA63C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		84689D3520E56B21007FA63C /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
+		84689D3720E56B9B007FA63C /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
 		84FF7C9020E548EF00213CB2 /* Tasks App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tasks App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		84FF7C9320E548EF00213CB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		84FF7C9820E548EF00213CB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			children = (
 				84FF7CD920E54EB100213CB2 /* TasksListViewModel.swift */,
 				84689D3320E568D5007FA63C /* SettingsViewModel.swift */,
+				84689D3720E56B9B007FA63C /* AddTaskViewModel.swift */,
 			);
 			path = viewModels;
 			sourceTree = "<group>";
@@ -320,6 +323,7 @@
 			files = (
 				84FF7CE520E550F800213CB2 /* TaskCategory+CoreDataClass.swift in Sources */,
 				84689D3620E56B21007FA63C /* AddTaskViewController.swift in Sources */,
+				84689D3820E56B9B007FA63C /* AddTaskViewModel.swift in Sources */,
 				84FF7CE420E550F800213CB2 /* ToDoTask+CoreDataProperties.swift in Sources */,
 				84FF7CD820E54E7D00213CB2 /* TasksListViewController.swift in Sources */,
 				84FF7CDA20E54EB100213CB2 /* TasksListViewModel.swift in Sources */,
