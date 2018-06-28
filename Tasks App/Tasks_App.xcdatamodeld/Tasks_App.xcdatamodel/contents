@@ -6,11 +6,12 @@
     </entity>
     <entity name="ToDoTask" representedClassName="ToDoTask" syncable="YES">
         <attribute name="completionDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="taskCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TaskCategory" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ToDoTask" positionX="-36" positionY="9" width="128" height="90"/>
+        <element name="ToDoTask" positionX="-36" positionY="9" width="128" height="105"/>
         <element name="TaskCategory" positionX="0" positionY="63" width="128" height="75"/>
     </elements>
 </model>
