@@ -120,10 +120,10 @@
             </objects>
             <point key="canvasLocation" x="1878" y="505"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Task View Controller-->
         <scene sceneID="WqD-kj-xBR">
             <objects>
-                <viewController id="ogJ-ei-JNu" sceneMemberID="viewController">
+                <viewController id="ogJ-ei-JNu" customClass="AddTaskViewController" customModule="Tasks_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yY7-f4-TYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -164,8 +164,12 @@
                                 </date>
                             </datePicker>
                             <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="STw-Du-tcE">
-                                <rect key="frame" x="16" y="404" width="343" height="162"/>
+                                <rect key="frame" x="16" y="392" width="343" height="89"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="ogJ-ei-JNu" id="boy-aq-gWB"/>
+                                    <outlet property="delegate" destination="ogJ-ei-JNu" id="cVJ-Aw-u41"/>
+                                </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AN8-rH-0YT">
                                 <rect key="frame" x="116" y="587" width="142" height="30"/>
@@ -179,8 +183,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="4oT-5I-PLr"/>
                     </view>
+                    <connections>
+                        <outlet property="addTaskViewModel" destination="3Mv-XP-J9E" id="ZIC-7e-6w4"/>
+                        <outlet property="categoriesPickerView" destination="STw-Du-tcE" id="2RM-Li-kUK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ck8-tz-H5U" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="3Mv-XP-J9E" customClass="AddTaskViewModel" customModule="Tasks_App" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="1877.5999999999999" y="-290.10494752623691"/>
         </scene>
