@@ -15,11 +15,16 @@ class TaskDetailsViewController: UIViewController {
     @IBOutlet var taskCategoryLbl: UILabel!
     @IBOutlet var taskStatusLbl: UILabel!
     @IBOutlet var taskDate: UILabel!
+    @IBOutlet var addTaskViewModel: AddTaskViewModel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Task Details"
+        
+        let editBtn = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(gotoEditScreen))
+        self.navigationItem.rightBarButtonItem  = editBtn
+        
         taskTitleLbl.text = selectedTask?.title
         taskCategoryLbl.text = selectedTask?.taskCategory?.name
         taskDate.text = convertDate(date: (selectedTask?.completionDate)!)
@@ -34,7 +39,10 @@ class TaskDetailsViewController: UIViewController {
     }
     
     @IBAction func markAsDone(_ sender: Any){
-        
+        selectedTask.status = 1
+        addTaskViewModel.updateTask(task: selectedTask, completion: {
+            self.navigationController?.popToRootViewController(animated: true)
+        })
     }
     
     func convertDate(date: NSDate) -> String {
@@ -42,5 +50,14 @@ class TaskDetailsViewController: UIViewController {
         formatter.dateFormat = "dd/MM/yyyy  HH:mm"
         let myString = formatter.string(from: date as Date)
         return myString
+    }
+    
+    @objc func gotoEditScreen() {
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "addTask") as! AddTaskViewController
+        nextViewController.editedTask = selectedTask
+        self.show(nextViewController, sender: self)
     }
 }

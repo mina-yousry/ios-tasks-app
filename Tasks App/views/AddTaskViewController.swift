@@ -15,17 +15,23 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
     @IBOutlet var categoriesPickerView: UIPickerView!
     @IBOutlet var taskDatePicker: UIDatePicker!
     @IBOutlet var titleField: UITextField!
+    @IBOutlet var addBtn: UIButton!
     
     var isCategoryPicked = false
-    var taskCategory = TaskCategory()
+    var addedTaskCategory = TaskCategory()
     var taskDate: NSDate!
     var taskTitle: String!
+    var editedTask: ToDoTask!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Add Task"
         addTaskViewModel.fetchCategories {
             self.categoriesPickerView.reloadAllComponents()
+        }
+        
+        if (editedTask) != nil {
+            setViews()
         }
     }
     
@@ -42,7 +48,7 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        taskCategory = addTaskViewModel.categoryAtIndex(index: row)
+        addedTaskCategory = addTaskViewModel.categoryAtIndex(index: row)
         isCategoryPicked = true
     }
     
@@ -55,11 +61,34 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
             self.present(alert, animated: true, completion: nil)
             return
         }
+        
         if !isCategoryPicked {
-            taskCategory = addTaskViewModel.categoryAtIndex(index: 0)
+            addedTaskCategory = addTaskViewModel.categoryAtIndex(index: 0)
         }
+        
         taskDate = taskDatePicker.date as NSDate
-        addTaskViewModel.addTask(title: taskTitle, date: taskDate, category: taskCategory)
+        
+        if addBtn.titleLabel?.text == "Save" {
+            editedTask.title = taskTitle
+            editedTask.completionDate = taskDate
+            editedTask.taskCategory = addedTaskCategory
+            addTaskViewModel.updateTask(task: editedTask,completion: {
+                self.navigationController?.popToRootViewController(animated: true)
+            })
+        }else{
+            addTaskViewModel.addTask(title: taskTitle, date: taskDate, category: addedTaskCategory)
+        }
         titleField.text = ""
+    }
+    
+    
+    func setViews() {
+        titleField.text = editedTask.title
+        taskDatePicker.date = editedTask.completionDate! as Date
+        if let editedTaskCategory = editedTask.taskCategory {
+            categoriesPickerView.selectRow(addTaskViewModel.category(category: editedTaskCategory), inComponent: 0, animated: true)
+        }
+        addBtn.setTitle("Save", for: UIControlState.normal)
+        self.title = "Edit Task"
     }
 }

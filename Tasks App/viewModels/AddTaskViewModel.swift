@@ -12,6 +12,7 @@ import CoreData
 class AddTaskViewModel: NSObject {
 
     var categories = [TaskCategory]()
+    @IBOutlet var tasksFetcher: TasksFetcher!
     
     func categoriesNumber() -> Int{
         return categories.count
@@ -44,5 +45,22 @@ class AddTaskViewModel: NSObject {
         task.taskCategory = category
         task.status = 0
         PersistenceUtility.saveContext()
+    }
+    
+    func category(category: TaskCategory) -> Int {
+        fetchCategories {}
+        var index = 0
+        for storedCategory in categories {
+            if storedCategory == category{
+                return index
+            }
+            index = index + 1
+        }
+        return 0
+    }
+    
+    func updateTask(task: ToDoTask,completion: ()->()) {
+        tasksFetcher.updateTask(task: task)
+        completion()
     }
 }

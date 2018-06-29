@@ -10,25 +10,41 @@ import UIKit
 import CoreData
 
 class TasksListViewModel: NSObject {
+    
+    @IBOutlet var tasksFetcher: TasksFetcher!
 
-    var tasks = [ToDoTask]()
+    var doneTasks = [ToDoTask]()
+    var notDoneTasks = [ToDoTask]()
     
     func fetchTasks(completion: ()->()) {
-        let fetchTasksRequest: NSFetchRequest<ToDoTask> = ToDoTask.fetchRequest()
-        do{
-            let fetchedTasks = try PersistenceUtility.context.fetch(fetchTasksRequest)
-            self.tasks = fetchedTasks
-            completion()
-        }catch{
-            
-        }
+        tasksFetcher.fetchNotDoneTasks(completion: { tasksNotDone in
+            self.notDoneTasks = tasksNotDone
+            self.tasksFetcher.fetchDoneTasks(completion: {tasksDone in
+                self.doneTasks = tasksDone
+                completion()
+            })
+        })
     }
     
     func numberOfRowsForSection(section: Int) -> Int {
-        return tasks.count
+        switch section {
+        case 0:
+            return notDoneTasks.count
+        case 1:
+            return doneTasks.count
+        default:
+            return 0
+        }
     }
     
-    func taskAtIndex(index: Int) -> ToDoTask {
-        return tasks[index]
+    func taskAtIndex(indexPath: IndexPath) -> ToDoTask {
+        switch indexPath.section {
+        case 0:
+            return notDoneTasks[indexPath.row]
+        case 1:
+            return doneTasks[indexPath.row]
+        default:
+            return notDoneTasks[indexPath.row]
+        }
     }
 }

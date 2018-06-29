@@ -64,7 +64,12 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zFb-WE-aQj" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="16M-PG-DnL" customClass="TasksListViewModel" customModule="Tasks_App" customModuleProvider="target"/>
+                <customObject id="tAp-5G-mfO" customClass="TasksFetcher" customModule="Tasks_App" customModuleProvider="target"/>
+                <customObject id="16M-PG-DnL" customClass="TasksListViewModel" customModule="Tasks_App" customModuleProvider="target">
+                    <connections>
+                        <outlet property="tasksFetcher" destination="tAp-5G-mfO" id="hf3-T5-ax2"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1036" y="93.103448275862078"/>
         </scene>
@@ -141,7 +146,7 @@
         <!--Add Task View Controller-->
         <scene sceneID="WqD-kj-xBR">
             <objects>
-                <viewController id="ogJ-ei-JNu" customClass="AddTaskViewController" customModule="Tasks_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addTask" id="ogJ-ei-JNu" customClass="AddTaskViewController" customModule="Tasks_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yY7-f4-TYY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -205,6 +210,7 @@
                         <viewLayoutGuide key="safeArea" id="4oT-5I-PLr"/>
                     </view>
                     <connections>
+                        <outlet property="addBtn" destination="AN8-rH-0YT" id="XOm-4l-OTt"/>
                         <outlet property="addTaskViewModel" destination="3Mv-XP-J9E" id="ZIC-7e-6w4"/>
                         <outlet property="categoriesPickerView" destination="STw-Du-tcE" id="2RM-Li-kUK"/>
                         <outlet property="taskDatePicker" destination="djl-X1-rAU" id="y1m-x3-pL7"/>
@@ -212,7 +218,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ck8-tz-H5U" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="3Mv-XP-J9E" customClass="AddTaskViewModel" customModule="Tasks_App" customModuleProvider="target"/>
+                <customObject id="Z0L-rI-R5N" customClass="TasksFetcher" customModule="Tasks_App" customModuleProvider="target"/>
+                <customObject id="3Mv-XP-J9E" customClass="AddTaskViewModel" customModule="Tasks_App" customModuleProvider="target">
+                    <connections>
+                        <outlet property="tasksFetcher" destination="Z0L-rI-R5N" id="Kvu-wQ-55e"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="1860" y="-660"/>
         </scene>
@@ -291,11 +302,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYc-Kd-HXR">
+                                <rect key="frame" x="107" y="404" width="162" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.0" green="0.47908455129999999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Delete">
+                                    <color key="titleColor" red="0.9999235272" green="1" blue="0.99988299609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="o9L-tI-J4B"/>
                     </view>
                     <connections>
+                        <outlet property="addTaskViewModel" destination="jPe-zj-EYS" id="cud-4X-DvW"/>
                         <outlet property="taskCategoryLbl" destination="w6t-Vy-Vvt" id="T1G-gn-f4P"/>
                         <outlet property="taskDate" destination="zyH-Ah-1Tx" id="6to-AM-Xb1"/>
                         <outlet property="taskStatusLbl" destination="ZGF-iF-kA4" id="Eek-bn-jJU"/>
@@ -303,6 +323,12 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KKH-eU-EIY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="knA-Qw-EyM" customClass="TasksFetcher" customModule="Tasks_App" customModuleProvider="target"/>
+                <customObject id="jPe-zj-EYS" customClass="AddTaskViewModel" customModule="Tasks_App" customModuleProvider="target">
+                    <connections>
+                        <outlet property="tasksFetcher" destination="knA-Qw-EyM" id="ZZ2-2G-q7K"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="2568.8000000000002" y="-290.10494752623691"/>
         </scene>

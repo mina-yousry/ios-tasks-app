@@ -28,23 +28,25 @@ class TasksListViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return 2
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return "Not Done"
+        default:
+            return "Done"
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tasksListViewModel.numberOfRowsForSection(section: section)
     }
 
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedTask = tasksListViewModel.taskAtIndex(index: indexPath.row)
-//        let taskDetailsView = TaskDetailsViewController()
-//        taskDetailsView.selectedTask = selectedTask
-//        self.performSegue(withIdentifier: "taskDetails", sender: self)
-//    }
-
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-        cell.taskTitle.text = tasksListViewModel.taskAtIndex(index: indexPath.row).title!
+        cell.taskTitle.text = tasksListViewModel.taskAtIndex(indexPath: indexPath).title!
         return cell
     }
     
@@ -52,10 +54,9 @@ class TasksListViewController: UITableViewController {
         if segue.identifier == "taskDetails" {
             let nextScene =  segue.destination as! TaskDetailsViewController
             if let indexPath = tasksTableView.indexPathForSelectedRow {
-                let pressedTask = tasksListViewModel.taskAtIndex(index: indexPath.row)
+                let pressedTask = tasksListViewModel.taskAtIndex(indexPath: indexPath)
                 nextScene.selectedTask = pressedTask
             }
         }
     }
-
 }
