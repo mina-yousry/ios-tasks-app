@@ -42,6 +42,7 @@ class AddTaskViewModel: NSObject {
         task.title = title
         task.completionDate = date
         task.taskCategory = category
+        task.status = 0
         PersistenceUtility.saveContext()
     }
 }

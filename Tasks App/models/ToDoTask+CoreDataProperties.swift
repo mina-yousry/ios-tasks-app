@@ -19,7 +19,7 @@ extension ToDoTask {
 
     @NSManaged public var title: String?
     @NSManaged public var completionDate: NSDate?
-    @NSManaged public var status: Int16
+    @NSManaged public var status: Int16 //0 not done , 1 done
     @NSManaged public var taskCategory: TaskCategory?
 
 }
