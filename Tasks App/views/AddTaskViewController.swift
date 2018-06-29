@@ -13,6 +13,13 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
     
     @IBOutlet var addTaskViewModel: AddTaskViewModel!
     @IBOutlet var categoriesPickerView: UIPickerView!
+    @IBOutlet var taskDatePicker: UIDatePicker!
+    @IBOutlet var titleField: UITextField!
+    
+    var isCategoryPicked = false
+    var taskCategory = TaskCategory()
+    var taskDate: NSDate!
+    var taskTitle: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,4 +41,25 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
         return addTaskViewModel.categoryNameForRow(row: row)
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        taskCategory = addTaskViewModel.categoryAtIndex(index: row)
+        isCategoryPicked = true
+    }
+    
+    @IBAction func addTask(_ sender: Any) {
+        
+        if let taskTitle = titleField.text {
+            self.taskTitle = taskTitle
+        }else{
+            let alert = UIAlertController(title: "Alert", message: "You have to enter a task title", preferredStyle: UIAlertControllerStyle.alert)
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        if !isCategoryPicked {
+            taskCategory = addTaskViewModel.categoryAtIndex(index: 0)
+        }
+        taskDate = taskDatePicker.date as NSDate
+        addTaskViewModel.addTask(title: taskTitle, date: taskDate, category: taskCategory)
+        titleField.text = ""
+    }
 }

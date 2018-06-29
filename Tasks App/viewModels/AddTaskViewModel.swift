@@ -32,4 +32,16 @@ class AddTaskViewModel: NSObject {
         }
         
     }
+    
+    func categoryAtIndex(index: Int) -> TaskCategory {
+        return categories[index]
+    }
+    
+    func addTask(title: String,date: NSDate,category: TaskCategory) {
+        let task = ToDoTask(context: PersistenceUtility.context)
+        task.title = title
+        task.completionDate = date
+        task.taskCategory = category
+        PersistenceUtility.saveContext()
+    }
 }

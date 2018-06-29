@@ -178,6 +178,9 @@
                                 <state key="normal" title="Add Task">
                                     <color key="titleColor" red="0.9999235272" green="1" blue="0.99988299609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addTask:" destination="ogJ-ei-JNu" eventType="touchUpInside" id="Yve-kt-LhY"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,6 +189,8 @@
                     <connections>
                         <outlet property="addTaskViewModel" destination="3Mv-XP-J9E" id="ZIC-7e-6w4"/>
                         <outlet property="categoriesPickerView" destination="STw-Du-tcE" id="2RM-Li-kUK"/>
+                        <outlet property="taskDatePicker" destination="djl-X1-rAU" id="y1m-x3-pL7"/>
+                        <outlet property="titleField" destination="2fW-Dl-S2k" id="rVn-pb-vqF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ck8-tz-H5U" userLabel="First Responder" sceneMemberID="firstResponder"/>
