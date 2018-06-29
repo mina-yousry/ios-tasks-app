@@ -309,6 +309,9 @@
                                 <state key="normal" title="Delete">
                                     <color key="titleColor" red="0.9999235272" green="1" blue="0.99988299609999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="deleteTask:" destination="bjO-r0-lNN" eventType="touchUpInside" id="ibb-tB-yFj"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

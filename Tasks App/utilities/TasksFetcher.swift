@@ -73,4 +73,18 @@ class TasksFetcher: NSObject {
         }
     }
     
+    func deleteTask(task: ToDoTask) {
+        let fetchTasksRequest: NSFetchRequest<ToDoTask> = ToDoTask.fetchRequest()
+        let specificTaskPredict = NSPredicate(format: "title == %@ AND taskCategory == %@", task.title!,task.taskCategory!)
+        fetchTasksRequest.predicate = specificTaskPredict
+        do{
+            let managedObjectContext = PersistenceUtility.context
+            let fetchedTasks = try managedObjectContext.fetch(fetchTasksRequest)
+            if fetchedTasks.count != 0 {
+                managedObjectContext.delete(fetchedTasks[0])
+            }
+        }catch{
+            print(error)
+        }
+    }
 }

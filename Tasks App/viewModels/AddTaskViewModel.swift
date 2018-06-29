@@ -63,4 +63,9 @@ class AddTaskViewModel: NSObject {
         tasksFetcher.updateTask(task: task)
         completion()
     }
+    
+    func deleteTask(task: ToDoTask,completion: ()->()) {
+        tasksFetcher.deleteTask(task: task)
+        completion()
+    }
 }

@@ -47,4 +47,21 @@ class TasksListViewModel: NSObject {
             return notDoneTasks[indexPath.row]
         }
     }
+    
+    func deleteTask(indexPath: IndexPath,completion: ()->()) {
+        var deletedTask = ToDoTask()
+        switch indexPath.section {
+        case 0:
+            deletedTask = notDoneTasks[indexPath.row]
+            notDoneTasks.remove(at: indexPath.row)
+        case 1:
+            deletedTask = doneTasks[indexPath.row]
+            doneTasks.remove(at: indexPath.row)
+        default:
+            deletedTask = notDoneTasks[indexPath.row]
+            notDoneTasks.remove(at: indexPath.row)
+        }
+        tasksFetcher.deleteTask(task: deletedTask)
+        completion()
+    }
 }

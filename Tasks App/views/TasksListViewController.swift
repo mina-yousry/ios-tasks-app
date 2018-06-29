@@ -59,4 +59,16 @@ class TasksListViewController: UITableViewController {
             }
         }
     }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            tasksListViewModel.deleteTask(indexPath: indexPath, completion: {
+                tasksTableView.reloadData()
+            })
+        }
+    }
 }

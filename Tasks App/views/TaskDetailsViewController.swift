@@ -45,6 +45,12 @@ class TaskDetailsViewController: UIViewController {
         })
     }
     
+    @IBAction func deleteTask(_ sender: Any){
+        addTaskViewModel.deleteTask(task: selectedTask, completion: {
+            self.navigationController?.popToRootViewController(animated: true)
+        })
+    }
+    
     func convertDate(date: NSDate) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy  HH:mm"
