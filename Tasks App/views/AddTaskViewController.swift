@@ -79,6 +79,7 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
             addTaskViewModel.addTask(title: taskTitle, date: taskDate, category: addedTaskCategory)
         }
         titleField.text = ""
+        self.navigationController?.popToRootViewController(animated: true)
     }
     
     

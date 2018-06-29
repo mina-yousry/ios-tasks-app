@@ -46,7 +46,22 @@ class TasksListViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath) as! TaskTableViewCell
-        cell.taskTitle.text = tasksListViewModel.taskAtIndex(indexPath: indexPath).title!
+        let task = tasksListViewModel.taskAtIndex(indexPath: indexPath)
+        cell.taskTitle.text = task.title!
+        cell.taskDate.text = convertDate(date: task.completionDate!)
+        cell.colorImage.layer.cornerRadius = (cell.colorImage.frame.height)/2
+        switch task.taskCategory?.color {
+        case "Green":
+            cell.colorImage.backgroundColor = UIColor.green
+        case "Red":
+            cell.colorImage.backgroundColor = UIColor.red
+        case "Yellow":
+            cell.colorImage.backgroundColor = UIColor.yellow
+        case "Blue":
+            cell.colorImage.backgroundColor = UIColor.blue
+        default:
+            cell.colorImage.backgroundColor = UIColor.green
+        }
         return cell
     }
     
@@ -70,5 +85,12 @@ class TasksListViewController: UITableViewController {
                 tasksTableView.reloadData()
             })
         }
+    }
+    
+    func convertDate(date: NSDate) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy  HH:mm"
+        let myString = formatter.string(from: date as Date)
+        return myString
     }
 }

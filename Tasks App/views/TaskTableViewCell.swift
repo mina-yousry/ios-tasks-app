@@ -11,6 +11,8 @@ import UIKit
 class TaskTableViewCell: UITableViewCell {
     
     @IBOutlet var taskTitle: UILabel!
+    @IBOutlet var taskDate: UILabel!
+    @IBOutlet var colorImage: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
