@@ -86,9 +86,13 @@ class SettingsViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
         let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
             UIAlertAction in
-            alert.dismiss(animated: true, completion: nil)
+            self.gotoTasksList()
+            //alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(okAction)
         present(alert, animated: true, completion: nil)
+    }
+    func gotoTasksList() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
