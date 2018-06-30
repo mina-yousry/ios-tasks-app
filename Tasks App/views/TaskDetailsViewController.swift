@@ -57,6 +57,7 @@ class TaskDetailsViewController: UIViewController {
         }))
         deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
         }))
+        present(deleteAlert, animated: true, completion: nil)
     }
     
     //func to convert date from date type to string to view it
