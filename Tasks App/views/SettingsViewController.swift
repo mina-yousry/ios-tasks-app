@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import UserNotifications
 
 class SettingsViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSource {
     
     @IBOutlet var categoryNameField: UITextField!
     @IBOutlet var colorsPickerView: UIPickerView!
     @IBOutlet var settingsViewModel: SettingsViewModel!
+    @IBOutlet weak var notificationSwitch: UISwitch!
     
     var pickerDataSource = ["Green", "Red", "Yellow", "Blue"];
     var isColorSelected = false
@@ -22,6 +24,13 @@ class SettingsViewController: UIViewController,UIPickerViewDelegate,UIPickerView
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Settings"
+        if UserDefaults.standard.object(forKey: "tasks_notifications") != nil {
+            if UserDefaults.standard.bool(forKey: "tasks_notifications") {
+                notificationSwitch.setOn(true, animated: true)
+            }else{
+                notificationSwitch.setOn(false, animated: true)
+            }
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -55,5 +64,31 @@ class SettingsViewController: UIViewController,UIPickerViewDelegate,UIPickerView
         }
         categoryNameField.text = ""
         settingsViewModel.addCategory(name: addedCategoryName, color: addedCategoryColor)
+    }
+    
+    @IBAction func notifswitch(_ sender: Any) {
+        if notificationSwitch.isOn{
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: {(granted,error) in
+                if granted {
+                    self.showAlert(message: "notifications has been enabled")
+                } else {
+                    self.showAlert(message: "notifications has been disabled")
+                }
+            })
+            UserDefaults.standard.set(true, forKey: "tasks_notifications")
+        }else{
+            UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+            UserDefaults.standard.set(false, forKey: "tasks_notifications")
+        }
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }

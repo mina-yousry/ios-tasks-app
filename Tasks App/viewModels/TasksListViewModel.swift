@@ -9,13 +9,15 @@
 import UIKit
 import CoreData
 
-class TasksListViewModel: NSObject {
+class TasksListViewModel: NSObject,AlertProtocol {
     
-    @IBOutlet var tasksFetcher: TasksFetcher!
+    @IBOutlet var tasksFetcher: TasksFetcher! //tasks handler that deals with core data
 
     var doneTasks = [ToDoTask]()
     var notDoneTasks = [ToDoTask]()
+    var alertHandler: AlertProtocol!
     
+    //fetch tasks to send it to tasks table view
     func fetchTasks(completion: ()->()) {
         tasksFetcher.fetchNotDoneTasks(completion: { tasksNotDone in
             self.notDoneTasks = tasksNotDone
@@ -26,6 +28,7 @@ class TasksListViewModel: NSObject {
         })
     }
     
+    //return number of rows depending on the section
     func numberOfRowsForSection(section: Int) -> Int {
         switch section {
         case 0:
@@ -37,6 +40,7 @@ class TasksListViewModel: NSObject {
         }
     }
     
+    //return a task depending on table view row
     func taskAtIndex(indexPath: IndexPath) -> ToDoTask {
         switch indexPath.section {
         case 0:
@@ -48,6 +52,7 @@ class TasksListViewModel: NSObject {
         }
     }
     
+    //delete a specific task
     func deleteTask(indexPath: IndexPath,completion: ()->()) {
         var deletedTask = ToDoTask()
         switch indexPath.section {
@@ -63,5 +68,14 @@ class TasksListViewModel: NSObject {
         }
         tasksFetcher.deleteTask(task: deletedTask)
         completion()
+    }
+    
+    func showAlert(message: String) {
+        alertHandler.showAlert(message: message)
+    }
+    
+    //set the alert handler in tasks fetcher to be able to send alerts
+    func setTaskAlertHAndler() {
+        tasksFetcher.alertHandler = self
     }
 }

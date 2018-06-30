@@ -9,9 +9,10 @@
 import UIKit
 import CoreData
 
-class AddTaskViewModel: NSObject {
+class AddTaskViewModel: NSObject,AlertProtocol {
 
     var categories = [TaskCategory]()
+    var alertHandler: AlertProtocol!
     @IBOutlet var tasksFetcher: TasksFetcher!
     
     func categoriesNumber() -> Int{
@@ -31,7 +32,6 @@ class AddTaskViewModel: NSObject {
         }catch{
             
         }
-        
     }
     
     func categoryAtIndex(index: Int) -> TaskCategory {
@@ -39,12 +39,7 @@ class AddTaskViewModel: NSObject {
     }
     
     func addTask(title: String,date: NSDate,category: TaskCategory) {
-        let task = ToDoTask(context: PersistenceUtility.context)
-        task.title = title
-        task.completionDate = date
-        task.taskCategory = category
-        task.status = 0
-        PersistenceUtility.saveContext()
+        tasksFetcher.addTask(title: title, date: date, category: category)
     }
     
     func category(category: TaskCategory) -> Int {
@@ -67,5 +62,14 @@ class AddTaskViewModel: NSObject {
     func deleteTask(task: ToDoTask,completion: ()->()) {
         tasksFetcher.deleteTask(task: task)
         completion()
+    }
+    
+    func showAlert(message: String) {
+        alertHandler.showAlert(message: message)
+    }
+    
+    //set the alert handler in tasks fetcher to be able to send alerts
+    func setTaskAlertHAndler() {
+        tasksFetcher.alertHandler = self
     }
 }

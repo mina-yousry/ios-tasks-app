@@ -9,7 +9,7 @@
 
 import UIKit
 
-class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate {
+class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelegate,AlertProtocol {
     
     @IBOutlet var addTaskViewModel: AddTaskViewModel!
     @IBOutlet var categoriesPickerView: UIPickerView!
@@ -29,7 +29,8 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
         addTaskViewModel.fetchCategories {
             self.categoriesPickerView.reloadAllComponents()
         }
-        
+        addTaskViewModel.setTaskAlertHAndler()
+        //checking if the task is added or updated 
         if (editedTask) != nil {
             setViews()
         }
@@ -40,7 +41,13 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return addTaskViewModel.categoriesNumber()
+        //check on categories to tell the user to add some
+        if addTaskViewModel.categoriesNumber() == 0 {
+            showAlert(message: "Add some categories from settings to start adding tasks")
+            return 0
+        }else{
+            return addTaskViewModel.categoriesNumber()
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String?{
@@ -68,6 +75,7 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
         
         taskDate = taskDatePicker.date as NSDate
         
+        //checking if the task is being added or updated to decide th action
         if addBtn.titleLabel?.text == "Save" {
             editedTask.title = taskTitle
             editedTask.completionDate = taskDate
@@ -78,11 +86,13 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
         }else{
             addTaskViewModel.addTask(title: taskTitle, date: taskDate, category: addedTaskCategory)
         }
+        
         titleField.text = ""
+        //heading back to root view
         self.navigationController?.popToRootViewController(animated: true)
     }
     
-    
+    //setting task data to edit it
     func setViews() {
         titleField.text = editedTask.title
         taskDatePicker.date = editedTask.completionDate! as Date
@@ -91,5 +101,15 @@ class AddTaskViewController: UIViewController,UIPickerViewDataSource,UIPickerVie
         }
         addBtn.setTitle("Save", for: UIControlState.normal)
         self.title = "Edit Task"
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }

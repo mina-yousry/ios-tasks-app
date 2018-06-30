@@ -8,13 +8,15 @@
 
 import UIKit
 
-class TasksListViewController: UITableViewController {
+class TasksListViewController: UITableViewController,AlertProtocol {
     
     @IBOutlet var tasksListViewModel: TasksListViewModel!
     @IBOutlet var tasksTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tasksListViewModel.alertHandler = self
+        tasksListViewModel.setTaskAlertHAndler()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,9 +83,17 @@ class TasksListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            tasksListViewModel.deleteTask(indexPath: indexPath, completion: {
-                tasksTableView.reloadData()
-            })
+            
+            let deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this task?", preferredStyle: UIAlertControllerStyle.alert)
+            deleteAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in
+                self.tasksListViewModel.deleteTask(indexPath: indexPath, completion: {
+                    self.tasksTableView.reloadData()
+                })
+            }))
+            deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            }))
+            
+            present(deleteAlert, animated: true, completion: nil)
         }
     }
     
@@ -92,5 +102,15 @@ class TasksListViewController: UITableViewController {
         formatter.dateFormat = "dd/MM/yyyy  HH:mm"
         let myString = formatter.string(from: date as Date)
         return myString
+    }
+    
+    func showAlert(message: String) {
+        let alert = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+            UIAlertAction in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }

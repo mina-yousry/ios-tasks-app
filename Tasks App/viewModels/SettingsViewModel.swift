@@ -9,11 +9,12 @@
 import UIKit
 
 class SettingsViewModel: NSObject {
+    
+    @IBOutlet var categoriesAdder: CategoriesAdder!
 
     func addCategory(name: String, color: String) {
-        var addedCategory = TaskCategory(context: PersistenceUtility.context)
-        addedCategory.name = name
-        addedCategory.color = color
-        PersistenceUtility.saveContext()
+        categoriesAdder.addNewCategory(name: name, color: color)
     }
+    
+    
 }
