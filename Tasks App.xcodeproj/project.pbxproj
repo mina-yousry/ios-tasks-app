@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,8 +11,6 @@
 		84689D3420E568D5007FA63C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3320E568D5007FA63C /* SettingsViewModel.swift */; };
 		84689D3620E56B21007FA63C /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3520E56B21007FA63C /* AddTaskViewController.swift */; };
 		84689D3820E56B9B007FA63C /* AddTaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84689D3720E56B9B007FA63C /* AddTaskViewModel.swift */; };
-		84806B7720E7B70000930DDB /* DP_Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 84806B7520E7B70000930DDB /* DP_Logo.png */; };
-		84806B7820E7B70000930DDB /* splash.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84806B7620E7B70000930DDB /* splash.jpg */; };
 		84D9D8D120E629AC00588821 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D8D020E629AC00588821 /* TaskTableViewCell.swift */; };
 		84D9D8D320E6336000588821 /* TaskDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D8D220E6336000588821 /* TaskDetailsViewController.swift */; };
 		84D9D8D520E6515600588821 /* TasksFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D8D420E6515600588821 /* TasksFetcher.swift */; };
@@ -56,8 +54,6 @@
 		84689D3320E568D5007FA63C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		84689D3520E56B21007FA63C /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		84689D3720E56B9B007FA63C /* AddTaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewModel.swift; sourceTree = "<group>"; };
-		84806B7520E7B70000930DDB /* DP_Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DP_Logo.png; path = "../../../../Downloads/Assets-1/DP_Logo.png"; sourceTree = "<group>"; };
-		84806B7620E7B70000930DDB /* splash.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = splash.jpg; path = "../../../../Downloads/Assets-1/splash.jpg"; sourceTree = "<group>"; };
 		84D9D8D020E629AC00588821 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		84D9D8D220E6336000588821 /* TaskDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailsViewController.swift; sourceTree = "<group>"; };
 		84D9D8D420E6515600588821 /* TasksFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksFetcher.swift; sourceTree = "<group>"; };
@@ -150,8 +146,6 @@
 				84FF7CD420E54DDF00213CB2 /* models */,
 				84FF7C9320E548EF00213CB2 /* AppDelegate.swift */,
 				84FF7C9720E548EF00213CB2 /* Main.storyboard */,
-				84806B7620E7B70000930DDB /* splash.jpg */,
-				84806B7520E7B70000930DDB /* DP_Logo.png */,
 				84FF7C9D20E548F200213CB2 /* Assets.xcassets */,
 				84FF7C9F20E548F200213CB2 /* LaunchScreen.storyboard */,
 				84FF7CA220E548F200213CB2 /* Info.plist */,
@@ -275,23 +269,26 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = dp;
+				ORGANIZATIONNAME = ITI;
 				TargetAttributes = {
 					84FF7C8F20E548EF00213CB2 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 					};
 					84FF7CA620E548F200213CB2 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 84FF7C8F20E548EF00213CB2;
 					};
 					84FF7CB120E548F200213CB2 = {
 						CreatedOnToolsVersion = 9.3;
+						ProvisioningStyle = Automatic;
 						TestTargetID = 84FF7C8F20E548EF00213CB2;
 					};
 				};
 			};
 			buildConfigurationList = 84FF7C8B20E548EF00213CB2 /* Build configuration list for PBXProject "Tasks App" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -317,9 +314,7 @@
 			files = (
 				84FF7CA120E548F200213CB2 /* LaunchScreen.storyboard in Resources */,
 				84FF7C9E20E548F200213CB2 /* Assets.xcassets in Resources */,
-				84806B7720E7B70000930DDB /* DP_Logo.png in Resources */,
 				84FF7C9920E548EF00213CB2 /* Main.storyboard in Resources */,
-				84806B7820E7B70000930DDB /* splash.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -536,14 +531,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tasks App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dp-itc.com.Tasks-App";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Tasks-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -553,14 +546,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tasks App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "dp-itc.com.Tasks-App";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Tasks-App";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -571,11 +562,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tasks AppTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dp-itc.com.Tasks-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -591,11 +578,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tasks AppTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dp-itc.com.Tasks-AppTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -610,11 +593,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tasks AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dp-itc.com.Tasks-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -629,11 +608,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Tasks AppUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "dp-itc.com.Tasks-AppUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -53,13 +53,13 @@ class TasksListViewController: UITableViewController,AlertProtocol {
         cell.taskDate.text = convertDate(date: task.completionDate!)
         cell.colorImage.layer.cornerRadius = (cell.colorImage.frame.height)/2
         switch task.taskCategory?.color {
-        case "Green":
+        case "Green"?:
             cell.colorImage.backgroundColor = UIColor.green
-        case "Red":
+        case "Red"?:
             cell.colorImage.backgroundColor = UIColor.red
-        case "Yellow":
+        case "Yellow"?:
             cell.colorImage.backgroundColor = UIColor.yellow
-        case "Blue":
+        case "Blue"?:
             cell.colorImage.backgroundColor = UIColor.blue
         default:
             cell.colorImage.backgroundColor = UIColor.green

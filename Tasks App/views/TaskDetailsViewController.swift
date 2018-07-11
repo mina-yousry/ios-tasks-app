@@ -31,9 +31,9 @@ class TaskDetailsViewController: UIViewController {
         taskCategoryLbl.text = selectedTask?.taskCategory?.name
         taskDate.text = convertDate(date: (selectedTask?.completionDate)!)
         switch selectedTask?.status {
-        case 0:
+        case Int16(0)?:
             taskStatusLbl.text = "Not Done"
-        case 1:
+        case Int16(1)?:
             taskStatusLbl.text = "Done"
         default:
             taskStatusLbl.text = "Not Done"
